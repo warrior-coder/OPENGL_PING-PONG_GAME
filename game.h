@@ -1,5 +1,5 @@
-// game.h
-// � ������ ����� ������� ������ ����
+﻿// game.h
+// в данном файле описана логика игры "Пинг-Понг"
 #ifndef _GAME_H_
 #define _GAME_H_
 
@@ -12,10 +12,12 @@
 #pragma comment (lib, "opengl32.lib")
 
 
+// определяем размеры окна
 #define W_WIDTH 960
 #define W_HEIGHT 640
 
 
+// структура BALL хранит информацию о мячике
 typedef struct _BALL
 {
     float x, y;
@@ -24,6 +26,7 @@ typedef struct _BALL
     float gravity;
 }BALL;
 
+// структура PLAYER хранит информацию об игроке
 typedef struct _PLAYER
 {
     float x, y;
@@ -31,33 +34,34 @@ typedef struct _PLAYER
 }PLAYER;
 
 
-float fWidth;
-float fHeight;
+// объявление глобальных переменных (выделение памяти)
+float fWidth, fHeight;
+float netHeight;
 
 BALL ball;
-float netHeight;
 PLAYER player1, player2;
 
 
-void drawCircle();
+// прототипы функций
+void drawCircle(float, float, int);
 
-void ballInit(BALL* ball, float x, float y, float dx, float dy, float r, float gravity);
+BOOL isCircleCross(float, float, float, float, float);
 
-void ballShow(BALL* ball);
+void ballInit(float, float, float, float, float, float);
 
-BOOL isBallCross(BALL* ball, float x, float y);
+void ballShow();
 
-void mirrorDirection(BALL* ball, float x, float y, float dPlayer);
+void ballMirrorDirection(float, float, float);
 
-void ballReflect(float* a, float* da, BOOL condition, float border);
+void ballReflect(float*, float*, BOOL, float);
 
-void ballMove(BALL* ball);
+void ballMove();
 
-void playerInit(PLAYER* player, float x, float y, float r);
+void playerInit(PLAYER*, float, float, float);
 
-void playerShow(PLAYER* player);
+void playerShow(PLAYER*);
 
-void playerMove(PLAYER* player, char keyLeft, char keyRight, float borderLeft, float borderRight);
+void playerMove(PLAYER*, char, char, float, float);
 
 void gameInit();
 

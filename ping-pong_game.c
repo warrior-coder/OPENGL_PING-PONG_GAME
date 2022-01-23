@@ -6,8 +6,8 @@ void EnableOpenGL(HWND, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
 
 
-// функция входа приложения
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+// точка входа для графического приложения Windows
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     WNDCLASSEX wc;
     HWND hwnd;
@@ -48,6 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         hInstance,
         NULL
     );
+    
+    if (!hwnd) return 1;
 
 
     // показываем окно
@@ -74,7 +76,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         else
         {
             // двидение мячика
-            ballMove(&ball);
+            ballMove();
 
             // движение игроков
             playerMove(&player1, 'A', 'D', -fWidth, 0.0);
